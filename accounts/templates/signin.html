@@ -6,9 +6,42 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="POST">
-        <input type="text" placeholder="enter your email"> <br><br>
-        <input type="text" placeholder="ender your password"><br><br>
+    <form method="POST">
+        {% csrf_token %}
+        <label>name</label>
+        <input type="text" placeholder="enter your name" name="name" required> <br><br>
+        <label>Email</label>
+        <input type="text" placeholder="enter your email" name="email" required> <br><br>
+        <label>age</label>
+        <input type="text" placeholder="enter your age" name="age" required> <br><br>
+        <label>Password</label>
+        <input type="text" placeholder="ender your password" name="password" required><br><br>
+        <label>gender</label>
+        <select name="gender" required>
+            <option value="male">male</option>
+            <option value="female">female</option>
+        </select>
+        <label>height(in cm)</label>
+        <input type="text" placeholder="ender your height" name="height"><br><br>
+        <label>weight(kg)</label>
+        <input type="text" placeholder="ender your weight" name="weight"><br><br>
+        <label>activity level</label>
+        <select name="activity_level" >
+            <option value="sedentary">Sedentary</option>
+            <option value="light">Lightly Active</option>
+            <option value="moderate">Moderately Active</option>
+            <option value="active">Very Active</option>
+        </select><br><br>
+        <label>fitness goal</label>
+        <select name="fitness_goal" >
+            <option value="weight_loss">Weight Loss</option>
+            <option value="weight_gain">Weight Gain</option>
+            <option value="maintenance">Maintain Weight</option>
+        </select><br><br>
+
+
+
+
         <button type="submit">submit</button>
 
 

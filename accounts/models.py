@@ -28,7 +28,8 @@ class userprofile(models.Model):
     activity_level=models.CharField(max_length=50,choices=activity_choices)
     fitness_goal = models.CharField(
         max_length=20,
-        choices=goal_choices
+        choices=goal_choices,
+        default='maintenance'
     )
 
     def __str__(self):

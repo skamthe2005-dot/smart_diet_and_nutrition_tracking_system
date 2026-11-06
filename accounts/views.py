@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
 from .models import userprofile
+from django.http import HttpResponse
+from django.utils.text import slugify
 
 
 def home(request):
@@ -9,27 +11,26 @@ def home(request):
 
 def signin(request):
     if request.method=='POST':
-        userame=request.post.get("username")
-        email=request.post.get("email")
-        password=request.post.get("password")
-        age=request.post.get("age")
-        gender=request.post.get("gender")
-        height=request.post.get("weight")
-        activity_level=request.post.get("activity_level")
-        weight=request.post.get("weight")
-        fitness_goal=request.post.get("fittness_goal")
+        name=request.POST.get("name")
+        email=request.POST.get("email")
+        password=request.POST.get("password")
+        age=request.POST.get("age")
+        gender=request.POST.get("gender")
+        height=request.POST.get("height")
+        activity_level=request.POST.get("activity_level")
+        weight=request.POST.get("weight")
+        fitness_goal=request.POST.get("fitness_goal")
 
-        user=User.objects.create_superuser(
-            username=userame,
+        username=slugify(email.split("@")[0])
+
+        if User.objects.filter(email=email).exists():
+            return HttpResponse("user already exist")
+
+        user=User.objects.create_user(
+            username=username,
             email=email,
-            password=password,
+            password=password
         )
-
-        if User.objects.filter(userame=userame).exists:
-            return render(request,"signup.html",{'error:username already exist'})
-
-        if User.objects.filter(email=email).exists:
-                    return render(request,"signup.html",{'error:email already exist'})
 
         userprofile.objects.create(
             user=user,
@@ -40,16 +41,7 @@ def signin(request):
             activity_level=activity_level,
             gender=gender,
         )
-
-        
-        
-
-
-        return redirect("login")
-
-
-
-        
+        return redirect("login")   
     return render(request,"signin.html")
 
 def login(request):
