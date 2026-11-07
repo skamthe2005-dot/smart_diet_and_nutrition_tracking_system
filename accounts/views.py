@@ -45,4 +45,15 @@ def signin(request):
     return render(request,"signin.html")
 
 def login(request):
+    if request.method=='POST':
+        email=request.POST.get('email')
+        password=request.POST.get("password")
+
+        if User.objects.filter(email=email) and User.objects.filter(password=password):
+            return redirect("dashboard")
+        return HttpResponse("hi")
+
     return render(request,"login.html")
+
+def dashboard(request):
+    return render(request,"dashboard.html")
