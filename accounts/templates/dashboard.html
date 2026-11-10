@@ -6,6 +6,24 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>hello , here is your dashboard</h1>
+    <h1>Welcome{{profile.user}}</h1>
+    <h2>Your daily nutrition requirement</h2>
+    <div>
+        <h3>basal metabolic rate (bmr)</h3>
+        <p>{{bmr}}kcal</p>
+    </div>
+    <div>
+        <h3>Daily calories requorement</h3>
+        <p>{{calorie_target}} kcal</p>
+    </div>
+
+    <div>
+        <h3>total daily energy expinditure</h3>
+        <p>{{protein_target}} grams</p>
+
+    </div>
+
+    
+
 </body>
 </html>

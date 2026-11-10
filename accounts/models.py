@@ -31,6 +31,7 @@ class userprofile(models.Model):
         choices=goal_choices,
         default='maintenance'
     )
+    is_verified=models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

@@ -8,8 +8,8 @@
 <body>
     <form method="POST">
         {% csrf_token %}
-        <input type="text" placeholder="enter your email"> <br><br>
-        <input type="text" placeholder="ender your password"><br><br>
+        <input type="text" placeholder="enter your email" name='email'> <br><br>
+        <input type="text" placeholder="ender your password" name='password'><br><br>
         <button type="submit">login</button>
 
 
